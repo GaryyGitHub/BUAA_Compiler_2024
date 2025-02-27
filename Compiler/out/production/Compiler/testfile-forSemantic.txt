@@ -1,0 +1,58 @@
+int func1(int a, int b) {
+    int a;  // b
+    if (1) return 0;
+}  // g
+
+void func2(int a, char c) {
+    printf("%c\n",c);
+    return;
+}
+
+char func3(char c) {
+    return c  // i
+}
+
+char func4(char c[]) {
+    return c[0];
+}
+
+void f1(int x)  {
+    return ;
+}
+
+void f3(char c) {
+    return ;
+}
+
+int main() {
+    int e = 5,f;
+    char s[5] = "abcd";
+    int h[3] = {1, 2, 3};
+    // 正确调用
+    func2(func1(2,e),func3('a'));
+    func2(func1(2,e),func3('a'));func2(func1(e,f),func3(s[0));   // k，前面的对，后面的错
+    func2(func1(e,f),func3(s[0));func2(func1(2,e),func3('a'));   // k，前面的错，后面的对
+    func2(func1(2,e),func3('a'))func2(func1(2,e),func3('a'));    // i
+    func2(func1(func1(2,e),func1(3,f)),func3(func3('a')));
+    func2(func1(func1(2,e+5),func1(3,f+6+'y')),func3(func3('a')));
+
+    // 参数数量不一致
+    func2(func1(2,e));
+    func2(func1(2,e),func3('a',2));
+    func2(func1(e),func3('a'));
+
+    // 参数类型不匹配
+    func2(func1(2,e),func3(s));
+    func2(s,h);
+    func2(func1(func1(2,e),func1(3,'x')),func3(func4('a')));
+
+    int x = 10;
+    int t[5] = {1, 2, 3, 4, 5};
+    char c = 'a';
+    f1(c); // 合法，因为是将 C 的值转为 int 再传递给 f1，作为 f1 中形参 x 的值
+    f1(s[0]); // 合法，理由同上
+    f3(x); // 合法，将 x 这个 exp 表达式的值取低8位传递给 f3，作为 f3 中形参 c 的值
+    f3(t[0]); // 合法，理由同上
+
+    return 0;
+}

@@ -1,0 +1,52 @@
+package backend.reg;
+
+import java.util.Objects;
+
+/**
+ * @author Gary
+ * @Description: Pair对，用于存储两个元素
+ * @date 2024/12/10 22:13
+ */
+public class Pair <T, U> {
+    private T first;
+    private U second;
+
+    public Pair(T first, U second) {
+        this.first = first;
+        this.second = second;
+    }
+
+    public T getFirst() {
+        return first;
+    }
+
+    public U getSecond() {
+        return second;
+    }
+
+    public void setFirst(T first) {
+        this.first = first;
+    }
+
+    public void setSecond(U second) {
+        this.second = second;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pair<?, ?> pair = (Pair<?, ?>) o;
+        return Objects.equals(first, pair.first) && Objects.equals(second, pair.second);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(first, second);
+    }
+    @Override
+    public String toString() {
+        return "(" + first + ", " + second + ")";
+    }
+}

@@ -1,0 +1,16 @@
+.data
+
+.text
+main:
+	add	$sp,	$sp,	-12
+b0_0:
+	addiu	$t0,	$sp,	0
+	sw	$zero,	0($t0)
+	lw	$s7,	0($t0)
+	addiu	$s7,	$s7,	1
+	sw	$s7,	0($t0)
+	li	$v0,	0
+	add	$sp,	$sp,	12
+	li	$v0,	10
+	syscall
+
